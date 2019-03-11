@@ -16,7 +16,7 @@ public class BruteCollinearPoints {
 
     private int segTracker = 0;
     //  we will not supply any input to BruteCollinearPoints that has 5 or more collinear point
-    private LineSegment[] segmentArr = new LineSegment[4];
+    private LineSegment[] segmentArr = new LineSegment[10000];
 
     public BruteCollinearPoints(Point[] points) {
         // check for illegal arguments
@@ -70,7 +70,8 @@ public class BruteCollinearPoints {
 
                         // otherwise, form a line segment with p->q or i/j
                         // added line segment
-                        segmentArr[segTracker++] = new LineSegment(points[i], points[l]);
+                        StdOut.println("Added line segemnt number " + segTracker);
+                        segmentArr[++segTracker] = new LineSegment(points[i], points[l]);
 
 
                     }
@@ -82,12 +83,14 @@ public class BruteCollinearPoints {
 
     // the number of line segments
     public int numberOfSegments() {
-        return 0;
+        return segTracker;
     }
 
     // the line segments
     public LineSegment[] segments() {
-        return segmentArr.clone();
+        StdOut.println(numberOfSegments());
+        StdOut.println(segmentArr);
+        return segmentArr;
     }
 
     public static void main(String[] args) {
