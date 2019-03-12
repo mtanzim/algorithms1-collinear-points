@@ -30,11 +30,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BruteCollinearPoints.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+            <state relative-caret-position="119">
+              <caret line="22" selection-start-line="22" selection-end-line="29" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FastCollinearPoints.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="135" column="63" selection-start-line="135" selection-start-column="63" selection-end-line="135" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -42,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="306">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -51,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Point.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
+            <state relative-caret-position="1870">
               <caret line="110" column="26" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="26" />
             </state>
           </provider>
@@ -93,6 +102,7 @@
         <option value="$PROJECT_DIR$/instructions/Client.java" />
         <option value="$PROJECT_DIR$/Client.java" />
         <option value="$PROJECT_DIR$/BruteCollinearPoints.java" />
+        <option value="$PROJECT_DIR$/FastCollinearPoints.java" />
       </list>
     </option>
   </component>
@@ -190,7 +200,7 @@
     <frame x="0" y="25" width="1920" height="1012" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16552451" />
       <window_info id="Structure" order="1" show_stripe_button="false" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" show_stripe_button="false" side_tool="true" />
@@ -203,7 +213,7 @@
       <window_info anchor="bottom" id="TODO" order="6" show_stripe_button="false" weight="0.32904148" />
       <window_info anchor="bottom" id="CheckStyle" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.24534884" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24534884" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.2255814" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="12" />
@@ -293,13 +303,7 @@
     <entry file="file://$PROJECT_DIR$/input8.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/input100.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input300.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/input80.png">
@@ -308,24 +312,37 @@
     <entry file="file://$PROJECT_DIR$/input400.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/input100.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input300.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
+        <state relative-caret-position="1870">
           <caret line="110" column="26" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state relative-caret-position="306">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BruteCollinearPoints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+        <state relative-caret-position="119">
+          <caret line="22" selection-start-line="22" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FastCollinearPoints.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="135" column="63" selection-start-line="135" selection-start-column="63" selection-end-line="135" selection-end-column="63" />
         </state>
       </provider>
     </entry>

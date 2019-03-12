@@ -20,32 +20,16 @@ public class BruteCollinearPoints {
     private LineSegment[] segmentArr = new LineSegment[segmentSize];
 
 
-    private void generateCollinear (Point [] points) {
-
+    private void resizeSegmentArr() {
+        LineSegment[] temp = new LineSegment[segmentArr.length * 2];
+        for (int resizeTracker = 0; resizeTracker < segmentArr.length;
+             resizeTracker++) {
+            temp[resizeTracker] = segmentArr[resizeTracker];
+        }
+        segmentArr = temp;
     }
 
-
-    public BruteCollinearPoints(Point[] points) {
-        // check for illegal arguments
-        if (points == null) throw new IllegalArgumentException("Null values not alloved!");
-
-        int size = points.length;
-
-        // decide not to optimze this, will run 16x :(
-
-        for (int i = 0; i < size; i++) {
-            if (points[i] == null)
-                throw new IllegalArgumentException("Null points are not allowed");
-            for (int j = 0; j < size; j++) {
-                if (i != j) {
-                    if (points[i].compareTo(points[j]) == 0)
-                        throw new IllegalArgumentException(
-                                "Do not supply same points multiple times!");
-                }
-            }
-        }
-
-
+    private void generateCollinear(Point[] points, int size) {
         // generate all line segment possibilities!
         // prevent duplicate entries
         for (int i = 0; i < size; i++) {
@@ -82,12 +66,7 @@ public class BruteCollinearPoints {
                         // resize segment tracker
 
                         if (segTracker == segmentArr.length) {
-                            LineSegment[] temp = new LineSegment[segmentArr.length * 2];
-                            for (int resizeTracker = 0; resizeTracker < segmentArr.length;
-                                 resizeTracker++) {
-                                temp[resizeTracker] = segmentArr[resizeTracker];
-                            }
-                            segmentArr = temp;
+                            resizeSegmentArr();
                         }
                         segmentArr[segTracker++] = new LineSegment(points[i], points[l]);
 
@@ -96,6 +75,31 @@ public class BruteCollinearPoints {
                 }
             }
         }
+    }
+
+    private void checkErrors(Point[] points, int size) {
+        // check for illegal arguments
+        if (points == null) throw new IllegalArgumentException("Null values not alloved!");
+
+        // decide not to optimze this, will run 16x :(
+
+        for (int i = 0; i < size; i++) {
+            if (points[i] == null)
+                throw new IllegalArgumentException("Null points are not allowed");
+            for (int j = 0; j < size; j++) {
+                if (i != j) {
+                    if (points[i].compareTo(points[j]) == 0)
+                        throw new IllegalArgumentException(
+                                "Do not supply same points multiple times!");
+                }
+            }
+        }
+    }
+
+
+    public BruteCollinearPoints(Point[] points) {
+        checkErrors(points, points.length);
+        generateCollinear(points, points.length);
 
     }
 
@@ -107,8 +111,8 @@ public class BruteCollinearPoints {
     // the line segments
     public LineSegment[] segments() {
         StdOut.println(numberOfSegments());
-        StdOut.println(segmentArr);
-        return segmentArr;
+        // StdOut.println(segmentArr);
+        return segmentArr.clone();
     }
 
     public static void main(String[] args) {
