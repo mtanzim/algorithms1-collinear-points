@@ -1,7 +1,7 @@
 /* *****************************************************************************
- *  Name:
- *  Date:
- *  Description:
+ *  Name: Client.java
+ *  Date: Mar 12, 2019
+ *  Description: Client to test
  **************************************************************************** */
 
 import edu.princeton.cs.algs4.In;
@@ -22,8 +22,8 @@ public class Client {
         }
         // draw the points
         StdDraw.enableDoubleBuffering();
-        StdDraw.setXscale(0, 32768);
-        StdDraw.setYscale(0, 32768);
+        StdDraw.setXscale(-2000, 32768);
+        StdDraw.setYscale(-2000, 32768);
         for (Point p : points) {
             p.draw();
         }

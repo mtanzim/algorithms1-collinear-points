@@ -16,7 +16,14 @@ public class BruteCollinearPoints {
 
     private int segTracker = 0;
     //  we will not supply any input to BruteCollinearPoints that has 5 or more collinear point
-    private LineSegment[] segmentArr = new LineSegment[10000];
+    private int segmentSize = 10;
+    private LineSegment[] segmentArr = new LineSegment[segmentSize];
+
+
+    private void generateCollinear (Point [] points) {
+
+    }
+
 
     public BruteCollinearPoints(Point[] points) {
         // check for illegal arguments
@@ -49,11 +56,11 @@ public class BruteCollinearPoints {
                     for (int l = 0; l < size; l++) {
                         if (l == k || l == j || l == i) continue;
                         // code combinations here!
-                        StdOut.print("i: " + i); // p
+                        /*StdOut.print("i: " + i); // p
                         StdOut.print(" j: " + j); // q
                         StdOut.print(" k: " + k); // r
                         StdOut.print(" l: " + l); // s
-                        StdOut.println(" end");
+                        StdOut.println(" end");*/
 
                         // set member i as the base point p;
 
@@ -70,8 +77,19 @@ public class BruteCollinearPoints {
 
                         // otherwise, form a line segment with p->q or i/j
                         // added line segment
-                        StdOut.println("Added line segemnt number " + segTracker);
-                        segmentArr[++segTracker] = new LineSegment(points[i], points[l]);
+                        StdOut.println("Added line segment number " + segTracker);
+
+                        // resize segment tracker
+
+                        if (segTracker == segmentArr.length) {
+                            LineSegment[] temp = new LineSegment[segmentArr.length * 2];
+                            for (int resizeTracker = 0; resizeTracker < segmentArr.length;
+                                 resizeTracker++) {
+                                temp[resizeTracker] = segmentArr[resizeTracker];
+                            }
+                            segmentArr = temp;
+                        }
+                        segmentArr[segTracker++] = new LineSegment(points[i], points[l]);
 
 
                     }
