@@ -6,6 +6,8 @@
 
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Arrays;
+
 
 public class FastCollinearPoints {
     // finds all line segments containing 4 points
@@ -29,6 +31,20 @@ public class FastCollinearPoints {
 
     private void generateCollinearFast(Point[] points, int size) {
         StdOut.println("Fast method!");
+        // StdOut.println("Sorted for point: " + i + ": " + points[i].toString());
+        for (int i = 0; i < size; i++) {
+            // for (int j = 0; j < size; j++) {
+            //     if (i == j) continue;
+            if (i > 0) Arrays.sort(points, 0, i, points[i].slopeOrder());
+            if (i < size - 1) Arrays.sort(points, i + 1, size, points[i].slopeOrder());
+            StdOut.println("Sorted for point " + i + ": " + points[i].toString());
+            for (Point point : points) {
+                StdOut.print(point.toString() + " -> ");
+            }
+            StdOut.println(points);
+            // }
+        }
+
         // return null;
     }
 
@@ -55,6 +71,8 @@ public class FastCollinearPoints {
 
     public FastCollinearPoints(Point[] points) {
         checkErrors(points, points.length);
+        // sort the array by slopes
+
         generateCollinearFast(points, points.length);
 
     }
@@ -73,11 +91,12 @@ public class FastCollinearPoints {
 
     public static void main(String[] args) {
         Point A = new Point(0, 0);
-        Point B = new Point(2, 5);
-        Point C = new Point(4, 5);
-        Point D = new Point(100, 100);
-        Point E = new Point(101, 400);
-        Point[] points = { A, B, C, D, E };
+        Point B = new Point(1, 1);
+        Point C = new Point(1, 2);
+        Point D = new Point(1, 3);
+        Point E = new Point(1, 4);
+        // Point[] points = { A, B, C, D, E };
+        Point[] points = { C, A, B, E, D };
         FastCollinearPoints usainBolt = new FastCollinearPoints(points);
 
 
