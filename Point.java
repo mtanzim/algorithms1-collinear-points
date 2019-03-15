@@ -102,12 +102,12 @@ public class Point implements Comparable<Point> {
             public int compare(Point v, Point w) {
                 double slopeV = slopeTo(v);
                 double slopeW = slopeTo(w);
-                StdOut.println(
+                /*StdOut.println(
                         "Comparing slope of " + v.toString() + " to " + w.toString()
                                 + " with self: "
                                 + "(" + x + ", " + y + ")"
                                 + " slopeV: " + slopeV
-                                + " slopeW: " + slopeW);
+                                + " slopeW: " + slopeW);*/
 
 
                 if (slopeV < slopeW) return -1;

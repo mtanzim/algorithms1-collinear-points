@@ -45,31 +45,41 @@ public class FastCollinearPoints {
             Arrays.sort(sorted, 1, size, temp.slopeOrder());
 
             // for debug only
-            for (int j = 0; j < size; j++) {
+            for (int j = 1; j < size; j++) {
                 StdOut.print(sorted[j].toString() + " -> ");
             }
+            StdOut.println("");
 
             double prevSlope = temp.slopeTo(sorted[1]);
-            int prevK = 0;
+            // int prevK = 0;
             int segLenTracker = 0;
+            StdOut.println("first slope: " + prevSlope);
 
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
+                StdOut.println("Current slope: " + newSlope);
                 if (prevSlope == newSlope) {
                     segLenTracker++;
+                    // continue;
+                    StdOut.println("Current segment streak: " + segLenTracker);
                 }
-                else {
-                    if (segLenTracker > 2) {
+                // also check if array is finished to add unfinished line segments
+                if (prevSlope != newSlope || k == size - 1) {
+                    if (segLenTracker > 1) {
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
-                        segmentArr[segmentSize++] = new LineSegment(temp, sorted[k - 1]);
+                        //add previous point as the last point to be colliear
+                        StdOut.println("Adding segment of length: " + segLenTracker);
+                        segmentArr[segTracker++] = new LineSegment(temp, sorted[k - 1]);
+                        // segmentSize++;
                     }
+                    // reset to zero
                     segLenTracker = 0;
                 }
 
-
                 prevSlope = newSlope;
+
 
             }
 
