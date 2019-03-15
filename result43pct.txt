@@ -1,0 +1,1708 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Spotbugs:     FAILED (5 warnings)
+PMD:          FAILED (4 warnings)
+Checkstyle:   FAILED (0 errors, 27 warnings)
+
+Correctness:  3/41 tests passed
+Memory:       1/1 tests passed
+Timing:       39/41 tests passed
+
+Aggregate score: 43.41%
+[Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+4.6K Mar 15 15:25 BruteCollinearPoints.java
+4.9K Mar 15 15:25 FastCollinearPoints.java
+6.0K Mar 15 15:25 Point.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac Point.java
+*-----------------------------------------------------------
+
+% javac BruteCollinearPoints.java
+*-----------------------------------------------------------
+
+% javac FastCollinearPoints.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Point:
+
+BruteCollinearPoints:
+
+FastCollinearPoints:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At Point.java:[line 114]
+H D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'esTuBrute' but that value is never used.  At BruteCollinearPoints.java:[line 125]
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At BruteCollinearPoints.java:[line 56]
+H D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'usainBolt' but that value is never used.  At FastCollinearPoints.java:[line 143]
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At FastCollinearPoints.java:[line 61]
+Warnings generated: 5
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+BruteCollinearPoints.java:19: The private instance (or static) variable 'segmentSize' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+BruteCollinearPoints.java:125: Avoid unused local variables, such as 'esTuBrute'. [UnusedLocalVariable]
+FastCollinearPoints.java:20: The private instance (or static) variable 'segmentSize' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+FastCollinearPoints.java:143: Avoid unused local variables, such as 'usainBolt'. [UnusedLocalVariable]
+PMD ends with 4 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] BruteCollinearPoints.java:40:30: Do not use the letter 'l' as a local variable name. It is hard to distinguish from the number '1'. [LocalVariableName]
+[WARN] BruteCollinearPoints.java:43:27: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] BruteCollinearPoints.java:100:5: Define constructors after static and instance variables but before methods. [DeclarationOrder]
+[WARN] BruteCollinearPoints.java:119:15: The local variable 'A' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] BruteCollinearPoints.java:120:15: The local variable 'B' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] BruteCollinearPoints.java:121:15: The local variable 'C' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] BruteCollinearPoints.java:122:15: The local variable 'D' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] BruteCollinearPoints.java:123:15: The local variable 'E' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] FastCollinearPoints.java:48:15: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] FastCollinearPoints.java:72:27: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] FastCollinearPoints.java:114:5: Define constructors after static and instance variables but before methods. [DeclarationOrder]
+[WARN] FastCollinearPoints.java:135:15: The local variable 'A' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] FastCollinearPoints.java:136:15: The local variable 'B' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] FastCollinearPoints.java:137:15: The local variable 'C' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] FastCollinearPoints.java:138:15: The local variable 'D' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] FastCollinearPoints.java:139:15: The local variable 'E' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] Point.java:105:19: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+[WARN] Point.java:138:15: The local variable 'A' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] Point.java:139:15: The local variable 'B' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] Point.java:140:15: The local variable 'C' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] Point.java:141:15: The local variable 'Z' must start with a lowercase letter and use camelCase. [LocalVariableName]
+[WARN] Point.java:176:11: '//' or '/*' is not followed by whitespace. [WhitespaceAfter]
+Checkstyle ends with 0 errors and 22 warnings.
+
+% custom checkstyle checks for Point.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for BruteCollinearPoints.java
+*-----------------------------------------------------------
+[WARN] BruteCollinearPoints.java:19:31: The numeric literal '10' appears to be unnecessary. [NumericLiteral]
+[WARN] BruteCollinearPoints.java:113:23: Do not print to standard output in 'segments()'. [SideEffect]
+Checkstyle ends with 0 errors and 2 warnings.
+
+% custom checkstyle checks for FastCollinearPoints.java
+*-----------------------------------------------------------
+[WARN] FastCollinearPoints.java:20:31: The numeric literal '10' appears to be unnecessary. [NumericLiteral]
+[WARN] FastCollinearPoints.java:129:23: Do not print to standard output in 'segments()'. [SideEffect]
+[WARN] FastCollinearPoints.java:130:23: Do not print to standard output in 'segments()'. [SideEffect]
+Checkstyle ends with 0 errors and 3 warnings.
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Point
+*-----------------------------------------------------------
+Running 3 total tests.
+
+Test 1: p.slopeTo(q)
+  * positive infinite slope, where p and q have coordinates in [0, 500)
+  * positive infinite slope, where p and q have coordinates in [0, 32768)
+  * negative infinite slope, where p and q have coordinates in [0, 500)
+  * negative infinite slope, where p and q have coordinates in [0, 32768)
+  * positive zero     slope, where p and q have coordinates in [0, 500)
+  * positive zero     slope, where p and q have coordinates in [0, 32768)
+  * symmetric for random points p and q with coordinates in [0, 500)
+  * symmetric for random points p and q with coordinates in [0, 32768)
+  * transitive for random points p, q, and r with coordinates in [0, 500)
+  * transitive for random points p, q, and r with coordinates in [0, 32768)
+  * slopeTo(), where p and q have coordinates in [0, 500)
+  * slopeTo(), where p and q have coordinates in [0, 32768)
+  * slopeTo(), where p and q have coordinates in [0, 10)
+  * throw a java.lang.NullPointerException if argument is null
+==> passed
+
+Test 2: p.compareTo(q)
+  * reflexive, where p and q have coordinates in [0, 500)
+  * reflexive, where p and q have coordinates in [0, 32768)
+  * antisymmetric, where p and q have coordinates in [0, 500)
+  * antisymmetric, where p and q have coordinates in [0, 32768)
+  * transitive, where p, q, and r have coordinates in [0, 500)
+  * transitive, where p, q, and r have coordinates in [0, 32768)
+  * sign of compareTo(), where p and q have coordinates in [0, 500)
+  * sign of compareTo(), where p and q have coordinates in [0, 32768)
+  * sign of compareTo(), where p and q have coordinates in [0, 10)
+  * throw java.lang.NullPointerException exception if argument is null
+==> passed
+
+Test 3: p.slopeOrder().compare(q, r)
+  * reflexive, where p and q have coordinates in [0, 500)
+  * reflexive, where p and q have coordinates in [0, 32768)
+  * antisymmetric, where p, q, and r have coordinates in [0, 500)
+  * antisymmetric, where p, q, and r have coordinates in [0, 32768)
+  * transitive, where p, q, r, and s have coordinates in [0, 500)
+  * transitive, where p, q, r, and s have coordinates in [0, 32768)
+  * sign of compare(), where p, q, and r have coordinates in [0, 500)
+  * sign of compare(), where p, q, and r have coordinates in [0, 32768)
+  * sign of compare(), where p, q, and r have coordinates in [0, 10)
+  * throw java.lang.NullPointerException if either argument is null
+==> passed
+
+
+Total: 3/3 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference Point and LineSegment)
+********************************************************************************
+
+Testing correctness of BruteCollinearPoints
+*-----------------------------------------------------------
+Running 17 total tests.
+
+The inputs satisfy the following conditions:
+  - no duplicate points
+  - no 5 (or more) points are collinear
+  - all x- and y-coordinates between 0 and 32,767
+
+Test 1: points from a file
+  * filename = input8.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+12
+    java.lang.NullPointerException: segment 12 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:155)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = equidistant.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:156)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = input40.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:157)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = input48.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+36
+    java.lang.NullPointerException: segment 36 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:158)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+==> FAILED
+
+Test 2a: points from a file with horizontal line segments
+  * filename = horizontal5.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+30
+    java.lang.NullPointerException: segment 30 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:164)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+
+  * filename = horizontal25.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+Added line segment number 60
+Added line segment number 61
+Added line segment number 62
+Added line segment number 63
+Added line segment number 64
+Added line segment number 65
+Added line segment number 66
+Added line segment number 67
+Added line segment number 68
+Added line segment number 69
+Added line segment number 70
+Added line segment number 71
+Added line segment number 72
+Added line segment number 73
+Added line segment number 74
+Added line segment number 75
+Added line segment number 76
+Added line segment number 77
+Added line segment number 78
+Added line segment number 79
+Added line segment number 80
+Added line segment number 81
+Added line segment number 82
+Added line segment number 83
+Added line segment number 84
+Added line segment number 85
+Added line segment number 86
+Added line segment number 87
+Added line segment number 88
+Added line segment number 89
+Added line segment number 90
+Added line segment number 91
+Added line segment number 92
+Added line segment number 93
+Added line segment number 94
+Added line segment number 95
+Added line segment number 96
+Added line segment number 97
+Added line segment number 98
+Added line segment number 99
+Added line segment number 100
+Added line segment number 101
+Added line segment number 102
+Added line segment number 103
+Added line segment number 104
+Added line segment number 105
+Added line segment number 106
+Added line segment number 107
+Added line segment number 108
+Added line segment number 109
+Added line segment number 110
+Added line segment number 111
+Added line segment number 112
+Added line segment number 113
+Added line segment number 114
+Added line segment number 115
+Added line segment number 116
+Added line segment number 117
+Added line segment number 118
+Added line segment number 119
+Added line segment number 120
+Added line segment number 121
+Added line segment number 122
+Added line segment number 123
+Added line segment number 124
+Added line segment number 125
+Added line segment number 126
+Added line segment number 127
+Added line segment number 128
+Added line segment number 129
+Added line segment number 130
+Added line segment number 131
+Added line segment number 132
+Added line segment number 133
+Added line segment number 134
+Added line segment number 135
+Added line segment number 136
+Added line segment number 137
+Added line segment number 138
+Added line segment number 139
+Added line segment number 140
+Added line segment number 141
+Added line segment number 142
+Added line segment number 143
+Added line segment number 144
+Added line segment number 145
+Added line segment number 146
+Added line segment number 147
+Added line segment number 148
+Added line segment number 149
+150
+    java.lang.NullPointerException: segment 150 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:165)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+
+==> FAILED
+
+Test 2b: random horizontal line segments
+  *  1 random horizontal line segment
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+6
+    java.lang.NullPointerException: segment 6 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:219)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 500
+     4
+     16915 12056
+     16495 12056
+     11108 12056
+     19100 12056
+
+  *  5 random horizontal line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+30
+    java.lang.NullPointerException: segment 30 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:220)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 250
+     20
+     16776 17340
+      2153 19467
+     14771  2329
+      9423  4616
+      8847  2329
+     16911 17340
+      7427  4616
+      2007 17826
+     19693 19467
+      4208 19467
+      1775  4616
+     19077  2329
+      7190 17826
+     18089  4616
+     19270 17340
+     11714 17826
+      9377 17340
+     16711 19467
+     15699 17826
+      1753  2329
+
+  * 10 random horizontal line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+60
+    java.lang.NullPointerException: segment 60 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:221)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 50
+
+  * 15 random horizontal line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+Added line segment number 60
+Added line segment number 61
+Added line segment number 62
+Added line segment number 63
+Added line segment number 64
+Added line segment number 65
+Added line segment number 66
+Added line segment number 67
+Added line segment number 68
+Added line segment number 69
+Added line segment number 70
+Added line segment number 71
+Added line segment number 72
+Added line segment number 73
+Added line segment number 74
+Added line segment number 75
+Added line segment number 76
+Added line segment number 77
+Added line segment number 78
+Added line segment number 79
+Added line segment number 80
+Added line segment number 81
+Added line segment number 82
+Added line segment number 83
+Added line segment number 84
+Added line segment number 85
+Added line segment number 86
+Added line segment number 87
+Added line segment number 88
+Added line segment number 89
+90
+    java.lang.NullPointerException: segment 90 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:222)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 5
+
+==> FAILED
+
+Test 3a: points from a file with vertical line segments
+  * filename = vertical5.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+30
+    java.lang.NullPointerException: segment 30 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:228)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+
+  * filename = vertical25.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+Added line segment number 60
+Added line segment number 61
+Added line segment number 62
+Added line segment number 63
+Added line segment number 64
+Added line segment number 65
+Added line segment number 66
+Added line segment number 67
+Added line segment number 68
+Added line segment number 69
+Added line segment number 70
+Added line segment number 71
+Added line segment number 72
+Added line segment number 73
+Added line segment number 74
+Added line segment number 75
+Added line segment number 76
+Added line segment number 77
+Added line segment number 78
+Added line segment number 79
+Added line segment number 80
+Added line segment number 81
+Added line segment number 82
+Added line segment number 83
+Added line segment number 84
+Added line segment number 85
+Added line segment number 86
+Added line segment number 87
+Added line segment number 88
+Added line segment number 89
+Added line segment number 90
+Added line segment number 91
+Added line segment number 92
+Added line segment number 93
+Added line segment number 94
+Added line segment number 95
+Added line segment number 96
+Added line segment number 97
+Added line segment number 98
+Added line segment number 99
+Added line segment number 100
+Added line segment number 101
+Added line segment number 102
+Added line segment number 103
+Added line segment number 104
+Added line segment number 105
+Added line segment number 106
+Added line segment number 107
+Added line segment number 108
+Added line segment number 109
+Added line segment number 110
+Added line segment number 111
+Added line segment number 112
+Added line segment number 113
+Added line segment number 114
+Added line segment number 115
+Added line segment number 116
+Added line segment number 117
+Added line segment number 118
+Added line segment number 119
+Added line segment number 120
+Added line segment number 121
+Added line segment number 122
+Added line segment number 123
+Added line segment number 124
+Added line segment number 125
+Added line segment number 126
+Added line segment number 127
+Added line segment number 128
+Added line segment number 129
+Added line segment number 130
+Added line segment number 131
+Added line segment number 132
+Added line segment number 133
+Added line segment number 134
+Added line segment number 135
+Added line segment number 136
+Added line segment number 137
+Added line segment number 138
+Added line segment number 139
+Added line segment number 140
+Added line segment number 141
+Added line segment number 142
+Added line segment number 143
+Added line segment number 144
+Added line segment number 145
+Added line segment number 146
+Added line segment number 147
+Added line segment number 148
+Added line segment number 149
+150
+    java.lang.NullPointerException: segment 150 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:229)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+
+==> FAILED
+
+Test 3b: random vertical line segments
+  *  1 random vertical line segment
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+6
+    java.lang.NullPointerException: segment 6 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:235)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 500
+     4
+     19217 15923
+     19217  2785
+     19217  3533
+     19217 11560
+
+  *  5 random vertical line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+30
+    java.lang.NullPointerException: segment 30 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:236)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 250
+     20
+     12551  3895
+     15830  6298
+     12551  9967
+     15830 20751
+      9635  9291
+     15830 10884
+     19667 13125
+      9635  2899
+     12551 16122
+     14346  7352
+     12551  9654
+      9635  8462
+     14346  1684
+     19667 19360
+     19667 20551
+     14346  6693
+      9635  8305
+     19667  7141
+     14346  3562
+     15830 15662
+
+  * 10 random vertical line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+60
+    java.lang.NullPointerException: segment 60 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:237)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 50
+
+  * 15 random vertical line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+Added line segment number 36
+Added line segment number 37
+Added line segment number 38
+Added line segment number 39
+Added line segment number 40
+Added line segment number 41
+Added line segment number 42
+Added line segment number 43
+Added line segment number 44
+Added line segment number 45
+Added line segment number 46
+Added line segment number 47
+Added line segment number 48
+Added line segment number 49
+Added line segment number 50
+Added line segment number 51
+Added line segment number 52
+Added line segment number 53
+Added line segment number 54
+Added line segment number 55
+Added line segment number 56
+Added line segment number 57
+Added line segment number 58
+Added line segment number 59
+Added line segment number 60
+Added line segment number 61
+Added line segment number 62
+Added line segment number 63
+Added line segment number 64
+Added line segment number 65
+Added line segment number 66
+Added line segment number 67
+Added line segment number 68
+Added line segment number 69
+Added line segment number 70
+Added line segment number 71
+Added line segment number 72
+Added line segment number 73
+Added line segment number 74
+Added line segment number 75
+Added line segment number 76
+Added line segment number 77
+Added line segment number 78
+Added line segment number 79
+Added line segment number 80
+Added line segment number 81
+Added line segment number 82
+Added line segment number 83
+Added line segment number 84
+Added line segment number 85
+Added line segment number 86
+Added line segment number 87
+Added line segment number 88
+Added line segment number 89
+90
+    java.lang.NullPointerException: segment 90 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:238)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 5
+
+==> FAILED
+
+Test 4a: points from a file with no line segments
+  * filename = random23.txt
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:244)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
+
+  * filename = random38.txt
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:245)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
+
+==> FAILED
+
+Test 4b: random points with no line segments
+  *  5 random points
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:274)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 500
+     5
+     20771  2937
+      9894 31661
+     29375  8958
+      5024 32339
+      4097 13776
+
+  * 10 random points
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:275)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 250
+     10
+     24172  5931
+     16467   342
+     22975  7997
+      8156  3728
+     29020 31066
+      1403  1662
+     20779 20272
+      5701 13299
+     15156 30464
+     17556 28377
+
+  * 20 random points
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:276)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 100
+     20
+      4614  4857
+     10450 30736
+      8347 23877
+     17513 25767
+       239 31094
+     27620 22866
+     13375 16903
+     26323  2195
+     24177 15852
+     17144 13598
+     31083 14664
+      8522 18016
+     14629  3137
+     30348 20538
+     19874  9618
+     32443  7089
+     28638  9885
+     16325 26550
+     20231 13695
+     13623 18349
+
+  * 50 random points
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:277)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 10
+
+==> FAILED
+
+Test 5: points from a file with fewer than 4 points
+  * filename = input1.txt
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:283)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+  * filename = input2.txt
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:284)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+  * filename = input3.txt
+0
+    java.lang.NullPointerException: segment 0 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:285)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+==> FAILED
+
+Test 6: check for dependence on either compareTo() or compare()
+        returning { -1, +1, 0 } instead of { negative integer,
+        positive integer, zero }
+  * filename = equidistant.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:294)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+  * filename = input40.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:295)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+  * filename = input48.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+36
+    java.lang.NullPointerException: segment 36 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:296)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+==> FAILED
+
+Test 7: check for fragile dependence on return value of toString()
+  * filename = equidistant.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:304)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+  * filename = input40.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+24
+    java.lang.NullPointerException: segment 24 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:305)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+  * filename = input48.txt
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment number 16
+Added line segment number 17
+Added line segment number 18
+Added line segment number 19
+Added line segment number 20
+Added line segment number 21
+Added line segment number 22
+Added line segment number 23
+Added line segment number 24
+Added line segment number 25
+Added line segment number 26
+Added line segment number 27
+Added line segment number 28
+Added line segment number 29
+Added line segment number 30
+Added line segment number 31
+Added line segment number 32
+Added line segment number 33
+Added line segment number 34
+Added line segment number 35
+36
+    java.lang.NullPointerException: segment 36 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:306)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+
+It is bad style to write code that depends on the particular format of
+the output from the toString() method, especially if your reason for
+doing so is to circumvent the public API (which intentionally does not
+provide access to the x- and y-coordinates).
+
+==> FAILED
+
+Test 8: random line segments, none vertical or horizontal
+  *  1 random line segment
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+6
+    java.lang.NullPointerException: segment 6 is null
+
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
+    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
+    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:346)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+
+    - failed on trial 1 of 500
+     4
+     16999  9767
+     10978  6077
+      6964  3617
+     15661  8947
+
+  *  5 random line segments
+Added line segment number 0
+Added line segment number 1
+Added line segment number 2
+Added line segment number 3
+Added line segment number 4
+Added line segment number 5
+Added line segment number 6
+Added line segment number 7
+Added line segment number 8
+Added line segment number 9
+Added line segment number 10
+Added line segment number 11
+Added line segment number 12
+Added line segment number 13
+Added line segment number 14
+Added line segment number 15
+Added line segment
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.

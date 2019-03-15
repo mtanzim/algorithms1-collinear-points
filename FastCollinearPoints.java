@@ -4,8 +4,6 @@
  *  Description: Fast method to detect collinear points
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Arrays;
 
 
@@ -126,9 +124,20 @@ public class FastCollinearPoints {
 
     // the line segments
     public LineSegment[] segments() {
-        StdOut.println(numberOfSegments());
-        StdOut.println(segmentArr);
-        return segmentArr.clone();
+        // StdOut.println(numberOfSegments());
+        // StdOut.println(segmentArr);
+        LineSegment[] segmentCloned = new LineSegment[segTracker];
+        int cloneTracker = 0;
+        for (LineSegment segment : segmentArr) {
+            if (segment != null) {
+                segmentCloned[cloneTracker] = segment;
+                cloneTracker++;
+            }
+        }
+        // ensure all values were copied over
+        assert (cloneTracker == segTracker);
+
+        return segmentCloned;
     }
 
     public static void main(String[] args) {
