@@ -18,6 +18,29 @@ public class FastCollinearPoints {
     private int segmentSize = 10;
     private LineSegment[] segmentArr = new LineSegment[segmentSize];
 
+    public FastCollinearPoints(Point[] points) {
+        // check for illegal arguments
+        if (points == null) throw new IllegalArgumentException("Null values not alloved!");
+
+        int size = points.length;
+        for (int i = 0; i < size; i++) {
+            if (points[i] == null)
+                throw new IllegalArgumentException("Null points are not allowed");
+            for (int j = 0; j < size; j++) {
+                if (points[j] == null)
+                    throw new IllegalArgumentException("Null points are not allowed");
+                if (i != j) {
+                    if (points[i].compareTo(points[j]) == 0)
+                        throw new IllegalArgumentException(
+                                "Do not supply same points multiple times!");
+                }
+            }
+        }
+        // sort the array by slopes
+        generateCollinearFast(points, points.length);
+
+    }
+
     private void resizeSegmentArr() {
         LineSegment[] temp = new LineSegment[segmentArr.length * 2];
         for (int resizeTracker = 0; resizeTracker < segmentArr.length;
@@ -28,6 +51,8 @@ public class FastCollinearPoints {
     }
 
     private void generateCollinearFast(Point[] points, int size) {
+
+
         // StdOut.println("Sorted for point: " + i + ": " + points[i].toString());
         // Points[] orig = points.clone();
         for (int i = 0; i < size; i++) {
@@ -89,34 +114,6 @@ public class FastCollinearPoints {
     }
 
 
-    private void checkErrors(Point[] points, int size) {
-        // check for illegal arguments
-        if (points == null) throw new IllegalArgumentException("Null values not alloved!");
-
-        // decide not to optimze this, will run 16x :(
-
-        for (int i = 0; i < size; i++) {
-            if (points[i] == null)
-                throw new IllegalArgumentException("Null points are not allowed");
-            for (int j = 0; j < size; j++) {
-                if (i != j) {
-                    if (points[i].compareTo(points[j]) == 0)
-                        throw new IllegalArgumentException(
-                                "Do not supply same points multiple times!");
-                }
-            }
-        }
-    }
-
-
-    public FastCollinearPoints(Point[] points) {
-        checkErrors(points, points.length);
-        // sort the array by slopes
-
-        generateCollinearFast(points, points.length);
-
-    }
-
     // the number of line segments
     public int numberOfSegments() {
         return segTracker;
@@ -146,10 +143,14 @@ public class FastCollinearPoints {
         Point C = new Point(1, 2);
         Point D = new Point(1, 3);
         Point E = new Point(1, 4);
+        Point NULLIDO = null;
         // Point[] points = { A, B, C, D, E };
         // Point[] points = { C, B, E, A, D };
         Point[] points = { C, A, E, B, D };
+        // Point[] pointsWithNullido = { C, A, NULLIDO, B, D };
+        // FastCollinearPoints usainBoltAndNullido = new FastCollinearPoints(pointsWithNullido);
         FastCollinearPoints usainBolt = new FastCollinearPoints(points);
+        // FastCollinearPoints usainBoltNull = new FastCollinearPoints(null);
 
 
     }
