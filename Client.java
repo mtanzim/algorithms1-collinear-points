@@ -6,7 +6,6 @@
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
 
 public class Client {
 
@@ -30,12 +29,12 @@ public class Client {
         StdDraw.show();
 
         // print and draw the line segments
-        // BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+        // FastCollinearPoints collinear = new FastCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             if (segment != null) {
 
-                StdOut.println(segment);
+                // StdOut.println(segment);
                 segment.draw();
             }
         }

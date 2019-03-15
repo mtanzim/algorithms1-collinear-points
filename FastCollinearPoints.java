@@ -33,7 +33,7 @@ public class FastCollinearPoints {
         // StdOut.println("Sorted for point: " + i + ": " + points[i].toString());
         // Points[] orig = points.clone();
         for (int i = 0; i < size; i++) {
-            StdOut.println("i: " + i + ", " + points[i]);
+            // StdOut.println("i: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
             Point temp = points[i];
             points[i] = points[0];
@@ -45,23 +45,23 @@ public class FastCollinearPoints {
             Arrays.sort(sorted, 1, size, temp.slopeOrder());
 
             // for debug only
-            for (int j = 1; j < size; j++) {
+            /*for (int j = 1; j < size; j++) {
                 StdOut.print(sorted[j].toString() + " -> ");
             }
-            StdOut.println("");
+            StdOut.println("");*/
 
             double prevSlope = temp.slopeTo(sorted[1]);
             // int prevK = 0;
             int segLenTracker = 0;
-            StdOut.println("first slope: " + prevSlope);
+            // StdOut.println("first slope: " + prevSlope);
 
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
-                StdOut.println("Current slope: " + newSlope);
+                // StdOut.println("Current slope: " + newSlope);
                 if (prevSlope == newSlope) {
                     segLenTracker++;
                     // continue;
-                    StdOut.println("Current segment streak: " + segLenTracker);
+                    // StdOut.println("Current segment streak: " + segLenTracker);
                 }
                 // also check if array is finished to add unfinished line segments
                 if (prevSlope != newSlope || k == size - 1) {
@@ -70,7 +70,7 @@ public class FastCollinearPoints {
                             resizeSegmentArr();
                         }
                         //add previous point as the last point to be colliear
-                        StdOut.println("Adding segment of length: " + segLenTracker);
+                        // StdOut.println("Adding segment of length: " + segLenTracker);
                         segmentArr[segTracker++] = new LineSegment(temp, sorted[k - 1]);
                         // segmentSize++;
                     }
@@ -84,7 +84,7 @@ public class FastCollinearPoints {
             }
 
 
-            StdOut.println("");
+            // StdOut.println("");
         }
 
         // return null;
