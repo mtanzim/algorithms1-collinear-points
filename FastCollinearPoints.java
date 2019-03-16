@@ -4,6 +4,8 @@
  *  Description: Fast method to detect collinear points
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Arrays;
 
 
@@ -67,13 +69,23 @@ public class FastCollinearPoints {
             int segLenTracker = 0;
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
+
+                // final item in array
+                if (k == size - 1 && newSlope == prevSlope && segLenTracker > 0) {
+                    Point lastPoint = sorted[k];
+                    if (segTracker == segmentArr.length) {
+                        resizeSegmentArr();
+                    }
+                    segmentArr[segTracker] = new LineSegment(temp, lastPoint);
+                    segTracker++;
+                    break;
+                }
                 // StdOut.println("k: " + k + ", " + sorted[k]);
                 // StdOut.println("Current slope: " + newSlope);
-                if (prevSlope == newSlope) {
-                    segLenTracker++;
+                if (prevSlope != newSlope) {
                     // StdOut.println("Current segment streak: " + segLenTracker);
-                    if (segLenTracker == 2) {
-                        Point lastPoint = sorted[k];
+                    if (segLenTracker > 1) {
+                        Point lastPoint = sorted[k - 1];
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
@@ -81,12 +93,12 @@ public class FastCollinearPoints {
                         segTracker++;
                         // StdOut.println("Created line segment with points " + temp.toString() + "->"
                         //                        + lastPoint.toString());
-                        segLenTracker = 0;
                     }
+                    segLenTracker = 0;
 
                 }
                 else {
-                    segLenTracker = 0;
+                    segLenTracker++;
                 }
                 prevSlope = newSlope;
 
@@ -111,6 +123,7 @@ public class FastCollinearPoints {
         for (LineSegment segment : segmentArr) {
             if (segment != null) {
                 segmentCloned[cloneTracker] = segment;
+                StdOut.println(segment.toString());
                 cloneTracker++;
             }
         }

@@ -4,6 +4,8 @@
  *  Description: Brute force method to detect collinear points
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.StdOut;
+
 public class BruteCollinearPoints {
     // finds all line segments containing 4 points
 
@@ -110,6 +112,7 @@ public class BruteCollinearPoints {
         for (LineSegment segment : segmentArr) {
             if (segment != null) {
                 segmentCloned[cloneTracker] = segment;
+                StdOut.println(segment.toString());
                 cloneTracker++;
             }
         }
