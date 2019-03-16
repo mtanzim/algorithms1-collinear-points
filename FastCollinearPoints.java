@@ -54,27 +54,16 @@ public class FastCollinearPoints {
 
     private void generateCollinearFast(Point[] points, int size) {
 
-
-        // StdOut.println("Sorted for point: " + i + ": " + points[i].toString());
-        // Points[] orig = points.clone();
         for (int i = 0; i < size; i++) {
             // StdOut.println("i: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
             Point temp = points[i];
             points[i] = points[0];
             points[0] = temp;
-
             // clone the array
             Point[] sorted = points.clone();
             // sort
             Arrays.sort(sorted, 1, size, temp.slopeOrder());
-
-            // for debug only
-            /*for (int j = 1; j < size; j++) {
-                StdOut.print(sorted[j].toString() + " -> ");
-            }
-            StdOut.println("");*/
-
             double prevSlope = temp.slopeTo(sorted[1]);
             // int prevK = 0;
             int segLenTracker = 0;
@@ -85,7 +74,6 @@ public class FastCollinearPoints {
                 // StdOut.println("Current slope: " + newSlope);
                 if (prevSlope == newSlope) {
                     segLenTracker++;
-                    // continue;
                     // StdOut.println("Current segment streak: " + segLenTracker);
                 }
                 // also check if array is finished to add unfinished line segments
@@ -110,20 +98,14 @@ public class FastCollinearPoints {
 
                         // segmentSize++;
                     }
-                    // reset to zero
                     segLenTracker = 0;
                 }
-
                 prevSlope = newSlope;
-
 
             }
 
-
-            // StdOut.println("");
         }
 
-        // return null;
     }
 
 
