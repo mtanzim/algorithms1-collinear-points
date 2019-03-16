@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -55,7 +56,7 @@ public class FastCollinearPoints {
     private void generateCollinearFast(Point[] points, int size) {
 
         for (int i = 0; i < size; i++) {
-            // StdOut.println("i: " + i + ", " + points[i]);
+            // StdOut.println("\ni: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
             Point temp = points[i];
             points[i] = points[0];
@@ -64,41 +65,62 @@ public class FastCollinearPoints {
             Point[] sorted = points.clone();
             // sort
             Arrays.sort(sorted, 1, size, temp.slopeOrder());
+
+            // StdOut.println("Checking remaining points: ");
+            // for (Point curDebugPoint : sorted) {
+            // StdOut.print(curDebugPoint + " -> ");
+            // }
+
+            // StdOut.println("\n");
             double prevSlope = temp.slopeTo(sorted[1]);
             // StdOut.println("Current slope: " + prevSlope);
-            int segLenTracker = 0;
+            int segLenTracker = 1;
+            ArrayList<Integer> currentSegmentList = new ArrayList<Integer>();
+            int minSeg = 2;
+            // int curStart =  2;
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
-
-                // final item in array
-                if (k == size - 1 && newSlope == prevSlope && segLenTracker > 0) {
-                    Point lastPoint = sorted[k];
-                    if (segTracker == segmentArr.length) {
-                        resizeSegmentArr();
-                    }
-                    segmentArr[segTracker] = new LineSegment(temp, lastPoint);
-                    segTracker++;
-                    break;
-                }
                 // StdOut.println("k: " + k + ", " + sorted[k]);
                 // StdOut.println("Current slope: " + newSlope);
-                if (prevSlope != newSlope) {
+                // slope doesn't match, or the end of array
+                if (prevSlope != newSlope || k == size - 1) {
                     // StdOut.println("Current segment streak: " + segLenTracker);
-                    if (segLenTracker > 1) {
-                        Point lastPoint = sorted[k - 1];
+
+                    Point lastPoint = sorted[k - 1];
+                    if (k == size - 1 && prevSlope == newSlope) lastPoint = sorted[k];
+
+                    int scopedMinSeg = minSeg;
+                    if (k == size - 1 && prevSlope == newSlope) scopedMinSeg -= 1;
+
+                    if (k == size - 1 && prevSlope == newSlope) currentSegmentList.add(k);
+
+
+                    if (segLenTracker > scopedMinSeg && temp.compareTo(lastPoint) <= 0) {
+                        Point maxPoint = lastPoint;
+                        for (int innerCurSegTracker : currentSegmentList) {
+                            if (sorted[innerCurSegTracker].compareTo(maxPoint) > 0)
+                                maxPoint = sorted[innerCurSegTracker];
+                        }
+
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
-                        segmentArr[segTracker] = new LineSegment(temp, lastPoint);
+                        segmentArr[segTracker] = new LineSegment(temp, maxPoint);
                         segTracker++;
-                        // StdOut.println("Created line segment with points " + temp.toString() + "->"
-                        //                        + lastPoint.toString());
+                        StdOut.println(
+                                "\nCreated line segment with points " + temp.toString() + "->"
+                                        + maxPoint.toString() + " and streak of: "
+                                        + segLenTracker);
                     }
-                    segLenTracker = 0;
+                    segLenTracker = 1;
+                    currentSegmentList.clear();
+                    currentSegmentList.add(k);
 
                 }
                 else {
                     segLenTracker++;
+                    currentSegmentList.add(k);
+                    // StdOut.println("Current streak: " + segLenTracker);
                 }
                 prevSlope = newSlope;
 
@@ -123,7 +145,7 @@ public class FastCollinearPoints {
         for (LineSegment segment : segmentArr) {
             if (segment != null) {
                 segmentCloned[cloneTracker] = segment;
-                StdOut.println(segment.toString());
+                // StdOut.println(segment.toString());
                 cloneTracker++;
             }
         }
