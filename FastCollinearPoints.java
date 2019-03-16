@@ -55,7 +55,7 @@ public class FastCollinearPoints {
     private void generateCollinearFast(Point[] points, int size) {
 
         for (int i = 0; i < size; i++) {
-            // StdOut.println("i: " + i + ", " + points[i]);
+            StdOut.println("i: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
             Point temp = points[i];
             points[i] = points[0];
@@ -65,39 +65,29 @@ public class FastCollinearPoints {
             // sort
             Arrays.sort(sorted, 1, size, temp.slopeOrder());
             double prevSlope = temp.slopeTo(sorted[1]);
-            // int prevK = 0;
+            // StdOut.println("Current slope: " + prevSlope);
             int segLenTracker = 0;
-            // StdOut.println("first slope: " + prevSlope);
-
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
+                StdOut.println("k: " + k + ", " + sorted[k]);
                 // StdOut.println("Current slope: " + newSlope);
                 if (prevSlope == newSlope) {
                     segLenTracker++;
-                    // StdOut.println("Current segment streak: " + segLenTracker);
-                }
-                // also check if array is finished to add unfinished line segments
-                if (prevSlope != newSlope || k == size - 1) {
-                    if (segLenTracker > 1) {
+                    StdOut.println("Current segment streak: " + segLenTracker);
+                    if (segLenTracker == 2) {
+                        Point lastPoint = sorted[k];
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
-                        //add previous point as the last point to be colliear
-                        // StdOut.println("Adding segment of length: " + segLenTracker);
-                        Point lastPoint;
-                        if (k == size - 1 && prevSlope == newSlope) {
-                            lastPoint = sorted[k];
-                        }
-                        else {
-                            lastPoint = sorted[k - 1];
-                        }
-
-                        segmentArr[segTracker++] = new LineSegment(temp, lastPoint);
+                        segmentArr[segTracker] = new LineSegment(temp, lastPoint);
+                        segTracker++;
                         StdOut.println("Created line segment with points " + temp.toString() + "->"
                                                + lastPoint.toString());
-
-                        // segmentSize++;
+                        segLenTracker = 0;
                     }
+
+                }
+                else {
                     segLenTracker = 0;
                 }
                 prevSlope = newSlope;
