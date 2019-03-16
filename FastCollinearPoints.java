@@ -4,8 +4,6 @@
  *  Description: Fast method to detect collinear points
  **************************************************************************** */
 
-import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Arrays;
 
 
@@ -55,7 +53,7 @@ public class FastCollinearPoints {
     private void generateCollinearFast(Point[] points, int size) {
 
         for (int i = 0; i < size; i++) {
-            StdOut.println("i: " + i + ", " + points[i]);
+            // StdOut.println("i: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
             Point temp = points[i];
             points[i] = points[0];
@@ -69,11 +67,11 @@ public class FastCollinearPoints {
             int segLenTracker = 0;
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
-                StdOut.println("k: " + k + ", " + sorted[k]);
+                // StdOut.println("k: " + k + ", " + sorted[k]);
                 // StdOut.println("Current slope: " + newSlope);
                 if (prevSlope == newSlope) {
                     segLenTracker++;
-                    StdOut.println("Current segment streak: " + segLenTracker);
+                    // StdOut.println("Current segment streak: " + segLenTracker);
                     if (segLenTracker == 2) {
                         Point lastPoint = sorted[k];
                         if (segTracker == segmentArr.length) {
@@ -81,8 +79,8 @@ public class FastCollinearPoints {
                         }
                         segmentArr[segTracker] = new LineSegment(temp, lastPoint);
                         segTracker++;
-                        StdOut.println("Created line segment with points " + temp.toString() + "->"
-                                               + lastPoint.toString());
+                        // StdOut.println("Created line segment with points " + temp.toString() + "->"
+                        //                        + lastPoint.toString());
                         segLenTracker = 0;
                     }
 

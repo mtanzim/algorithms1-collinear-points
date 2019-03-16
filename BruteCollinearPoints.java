@@ -74,25 +74,6 @@ public class BruteCollinearPoints {
         }
     }
 
-    /*private void checkErrors(Point[] points, int size) {
-        // check for illegal arguments
-        if (points == null) throw new IllegalArgumentException("Null values not alloved!");
-
-        // decide not to optimze this, will run 16x :(
-
-        for (int i = 0; i < size; i++) {
-            if (points[i] == null)
-                throw new IllegalArgumentException("Null points are not allowed");
-            for (int j = 0; j < size; j++) {
-                if (i != j) {
-                    if (points[i].compareTo(points[j]) == 0)
-                        throw new IllegalArgumentException(
-                                "Do not supply same points multiple times!");
-                }
-            }
-        }
-    }*/
-
 
     public BruteCollinearPoints(Point[] points) {
         // check for illegal arguments
