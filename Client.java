@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Client {
 
@@ -31,13 +32,26 @@ public class Client {
         // print and draw the line segments
         BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         // FastCollinearPoints collinear = new FastCollinearPoints(points);
+        StdOut.println("Using brute segments!");
         for (LineSegment segment : collinear.segments()) {
             // if (segment != null) {
-
             // StdOut.println(segment);
+
+            StdOut.println(segment);
             segment.draw();
             // }
         }
+        FastCollinearPoints collinearFast = new FastCollinearPoints(points);
+        StdOut.println("Using fast segments!");
+        for (LineSegment segment : collinearFast.segments()) {
+            // if (segment != null) {
+            // StdOut.println(segment);
+
+            StdOut.println(segment);
+            segment.draw();
+            // }
+        }
+        StdOut.println(collinearFast.numberOfSegments());
         StdDraw.show();
     }
 }

@@ -74,6 +74,7 @@ public class FastCollinearPoints {
             // StdOut.println("Current slope: " + prevSlope);
             int segLenTracker = 1;
             ArrayList<Integer> currentSegmentList = new ArrayList<Integer>();
+            currentSegmentList.add(i);
             int minSeg = 2;
             // int curStart =  2;
             for (int k = 2; k < size; k++) {
@@ -84,26 +85,33 @@ public class FastCollinearPoints {
                 if (prevSlope != newSlope || k == size - 1) {
                     // StdOut.println("Current segment streak: " + segLenTracker);
 
-                    Point lastPoint = sorted[k - 1];
-                    if (k == size - 1 && prevSlope == newSlope) lastPoint = sorted[k];
 
+                    // case when we're at the end of the array
                     int scopedMinSeg = minSeg;
-                    if (k == size - 1 && prevSlope == newSlope) scopedMinSeg -= 1;
+                    Point lastPoint = sorted[k - 1];
+                    if (k == size - 1 && prevSlope == newSlope) {
+                        lastPoint = sorted[k];
+                        scopedMinSeg -= 1;
+                        currentSegmentList.add(k);
+                    }
 
-                    if (k == size - 1 && prevSlope == newSlope) currentSegmentList.add(k);
-
-
+                    // ensure we're not double counting by disregaring "negative slopes"
+                    // if (segLenTracker > scopedMinSeg && temp.compareTo(lastPoint) <= 0) {
                     if (segLenTracker > scopedMinSeg && temp.compareTo(lastPoint) <= 0) {
                         Point maxPoint = lastPoint;
+                        Point minPoint = temp;
                         for (int innerCurSegTracker : currentSegmentList) {
                             if (sorted[innerCurSegTracker].compareTo(maxPoint) > 0)
                                 maxPoint = sorted[innerCurSegTracker];
+
+                            if (sorted[innerCurSegTracker].compareTo(minPoint) <= 0)
+                                minPoint = sorted[innerCurSegTracker];
                         }
 
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
-                        segmentArr[segTracker] = new LineSegment(temp, maxPoint);
+                        segmentArr[segTracker] = new LineSegment(minPoint, maxPoint);
                         segTracker++;
                         // StdOut.println(
                         // "\nCreated line segment with points " + temp.toString() + "->"
@@ -112,7 +120,7 @@ public class FastCollinearPoints {
                     }
                     segLenTracker = 1;
                     currentSegmentList.clear();
-                    currentSegmentList.add(k);
+                    currentSegmentList.add(i);
 
                 }
                 else {

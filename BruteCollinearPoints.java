@@ -30,10 +30,22 @@ public class BruteCollinearPoints {
         // generate all line segment possibilities!
         // prevent duplicate entries
         for (int i = 0; i < size; i++) {
+
+
             for (int j = 0; j < size; j++) {
+
                 if (i == j) continue;
+                if (points[i].compareTo(points[j]) <= 0) continue;
+                double pq = points[i].slopeTo(points[j]);
+
                 for (int k = 0; k < size; k++) {
                     if (k == j || k == i) continue;
+                    if (points[i].compareTo(points[k]) <= 0) continue;
+                    if (points[j].compareTo(points[k]) <= 0) continue;
+
+                    double pr = points[i].slopeTo(points[k]);
+                    if (pq != pr) continue;
+
                     for (int l = 0; l < size; l++) {
                         if (l == k || l == j || l == i) continue;
                         // code combinations here!
@@ -44,15 +56,9 @@ public class BruteCollinearPoints {
                         StdOut.println(" end");*/
 
                         // set member i as the base point p;
-
-                        if (points[i].compareTo(points[j]) <= 0) continue;
-                        double pq = points[i].slopeTo(points[j]);
-
-                        if (points[i].compareTo(points[k]) <= 0) continue;
-                        double pr = points[i].slopeTo(points[k]);
-                        if (pq != pr) continue;
-
                         if (points[i].compareTo(points[l]) <= 0) continue;
+                        if (points[j].compareTo(points[l]) <= 0) continue;
+                        if (points[k].compareTo(points[l]) <= 0) continue;
                         double ps = points[i].slopeTo(points[l]);
                         if (ps != pr) continue;
 
@@ -61,8 +67,6 @@ public class BruteCollinearPoints {
                         // StdOut.println("Added line segment number " + segTracker);
 
                         // resize segment tracker
-                        if (points[i].compareTo(points[l]) < 0) continue;
-
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
