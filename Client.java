@@ -29,20 +29,9 @@ public class Client {
         }
         StdDraw.show();
 
-        // print and draw the line segments
-        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-        // FastCollinearPoints collinear = new FastCollinearPoints(points);
-        StdOut.println("Using brute segments!");
-        for (LineSegment segment : collinear.segments()) {
-            // if (segment != null) {
-            // StdOut.println(segment);
 
-            StdOut.println(segment);
-            segment.draw();
-            // }
-        }
         FastCollinearPoints collinearFast = new FastCollinearPoints(points);
-        StdOut.println("Using fast segments!");
+        StdOut.println("\nUsing fast segments!");
         for (LineSegment segment : collinearFast.segments()) {
             // if (segment != null) {
             // StdOut.println(segment);
@@ -53,5 +42,20 @@ public class Client {
         }
         StdOut.println(collinearFast.numberOfSegments());
         StdDraw.show();
+
+
+        // print and draw the line segments
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+        // FastCollinearPoints collinear = new FastCollinearPoints(points);
+        StdOut.println("Using brute segments!");
+        for (LineSegment segment : collinear.segments()) {
+            // if (segment != null) {
+            // StdOut.println(segment);
+
+            StdOut.println(segment);
+            // segment.draw();
+            // }
+        }
+        StdOut.println(collinear.numberOfSegments());
     }
 }

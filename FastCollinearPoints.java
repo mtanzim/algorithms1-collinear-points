@@ -52,7 +52,7 @@ public class FastCollinearPoints {
     }
 
     private void generateCollinearFast(Point[] points, int size) {
-
+        ArrayList<Integer> currentSegmentList = new ArrayList<Integer>();
         for (int i = 0; i < size; i++) {
             // StdOut.println("\ni: " + i + ", " + points[i]);
             // always place current item in the 0th position, and sort
@@ -66,65 +66,88 @@ public class FastCollinearPoints {
 
             // StdOut.println("Checking remaining points: ");
             // for (Point curDebugPoint : sorted) {
-            // StdOut.print(curDebugPoint + " -> ");
+            //     StdOut.print(curDebugPoint + " -> ");
             // }
 
             // StdOut.println("\n");
             double prevSlope = temp.slopeTo(sorted[1]);
+            // StdOut.println("k: " + 1 + ", " + sorted[1]);
             // StdOut.println("Current slope: " + prevSlope);
             int segLenTracker = 1;
-            ArrayList<Integer> currentSegmentList = new ArrayList<Integer>();
-            currentSegmentList.add(i);
+            currentSegmentList.clear();
+            currentSegmentList.add(0);
+            currentSegmentList.add(1);
             int minSeg = 2;
             // int curStart =  2;
             for (int k = 2; k < size; k++) {
                 double newSlope = temp.slopeTo(sorted[k]);
                 // StdOut.println("k: " + k + ", " + sorted[k]);
                 // StdOut.println("Current slope: " + newSlope);
+                // StdOut.println("Current segment streak: " + segLenTracker);
+                // for (int outerCurSegTracker : currentSegmentList) {
+                //     StdOut.print(sorted[outerCurSegTracker] + " -> ");
+                // }
+                // StdOut.println("");
                 // slope doesn't match, or the end of array
                 if (prevSlope != newSlope || k == size - 1) {
-                    // StdOut.println("Current segment streak: " + segLenTracker);
-
 
                     // case when we're at the end of the array
-                    int scopedMinSeg = minSeg;
                     Point lastPoint = sorted[k - 1];
                     if (k == size - 1 && prevSlope == newSlope) {
                         lastPoint = sorted[k];
-                        scopedMinSeg -= 1;
                         currentSegmentList.add(k);
+                        segLenTracker++;
                     }
 
                     // ensure we're not double counting by disregaring "negative slopes"
                     // if (segLenTracker > scopedMinSeg && temp.compareTo(lastPoint) <= 0) {
-                    if (segLenTracker > scopedMinSeg && temp.compareTo(lastPoint) <= 0) {
-                        Point maxPoint = lastPoint;
+                    if (segLenTracker > minSeg) {
+                        Point maxPoint = temp;
                         Point minPoint = temp;
+
+                        // StdOut.println("Starting Max point in seg: " + maxPoint.toString());
+                        // StdOut.println("Starting Min point in seg: " + minPoint.toString());
+
+                        // StdOut.print("Segment contains: ");
                         for (int innerCurSegTracker : currentSegmentList) {
+                            // StdOut.print(sorted[innerCurSegTracker] + " -> ");
                             if (sorted[innerCurSegTracker].compareTo(maxPoint) > 0)
                                 maxPoint = sorted[innerCurSegTracker];
 
                             if (sorted[innerCurSegTracker].compareTo(minPoint) <= 0)
                                 minPoint = sorted[innerCurSegTracker];
                         }
+                        // StdOut.println("");
+
 
                         if (segTracker == segmentArr.length) {
                             resizeSegmentArr();
                         }
-                        segmentArr[segTracker] = new LineSegment(minPoint, maxPoint);
-                        segTracker++;
-                        // StdOut.println(
-                        // "\nCreated line segment with points " + temp.toString() + "->"
-                        //         + maxPoint.toString() + " and streak of: "
-                        //         + segLenTracker);
+                        // StdOut.println("Max point in seg: " + maxPoint.toString());
+                        // StdOut.println("Min point in seg: " + minPoint.toString());
+                        // StdOut.println("Current root point: " + temp.toString());
+
+                        if (temp.compareTo(minPoint) == 0) {
+
+                            segmentArr[segTracker] = new LineSegment(minPoint, maxPoint);
+                            segTracker++;
+                            // StdOut.println(
+                            //         "\nCreated line segment with points " + minPoint.toString()
+                            //                 + "->"
+                            //                 + maxPoint.toString() + " and streak of: "
+                            //                 + segLenTracker + "\n");
+                        }
                     }
                     segLenTracker = 1;
                     currentSegmentList.clear();
-                    currentSegmentList.add(i);
+                    currentSegmentList.add(0);
+                    // need to always keep current item on the segment!!!!!!!!
+                    currentSegmentList.add(k);
 
                 }
                 else {
                     segLenTracker++;
+                    // StdOut.println("Adding point to segment: " + sorted[k]);
                     currentSegmentList.add(k);
                     // StdOut.println("Current streak: " + segLenTracker);
                 }
